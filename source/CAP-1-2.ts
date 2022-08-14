@@ -53,7 +53,7 @@ export function _from_string_Alert_status (str: string): Alert_status | undefine
         [ "exercise", Alert_status.exercise ],
         [ "system", Alert_status.system ],
         [ "test", Alert_status.test ],
-    ])).get(str.toLowerCase());
+    ])).get(str?.toLowerCase());
 }
 export const Alert_status_actual: Alert_status =
     Alert_status.actual; /* LONG_NAMED_ENUMERATED_VALUE */
@@ -1723,6 +1723,52 @@ export class Alert {
 
     public static async fromXML (str: string): Promise<Alert> {
         return alertFromXML(str);
+    }
+
+    /** `validate` returns an `Error` if any attributes are invalid, otherwise it returns `undefined` */
+    validate(): Error | undefined {
+        if (!this.identifier)
+            return new Error(
+                `invalid 'identifier' of value '${this.identifier}'`
+            );
+        if (!this.sender)
+            return new Error(`invalid 'sender' of value '${this.sender}'`);
+
+        const invalidSent = __utils.validateDatetime("sent", this.sent);
+        if (invalidSent) return invalidSent;
+
+        if (_from_string_Alert_status(String(this.status)) === undefined)
+            return new Error(`invalid 'status' of value '${this.status}'`);
+
+        if (_from_string_Alert_msgType(String(this.msgType)) === undefined)
+            return new Error(`invalid 'msgType' of value '${this.msgType}'`);
+
+        if (_from_string_Alert_scope(String(this.scope)) === undefined)
+            return new Error(`invalid 'scope' of value '${this.scope}'`);
+
+        if (
+            !this.code_list?.length ||
+            !this.code_list?.every((code) => !!code)
+        ) {
+            // Note: CAP-TSU-1.2 mentions a required prefix of 'profile:CAP-TSU:'
+            // but some existing documents include other values (e.g. 'IPAWSv1.0').
+            // Prefer to validate only on presence at this time.
+            return new Error(`invalid 'code' of value '${this.code_list}'`);
+        }
+
+        // TODO: Validate info_list
+
+        if (this.elem_list?.length && this.elem_list?.some((elem) => !elem)) {
+            // Note: No known instances of `elem_list` in references or examples.
+            // Prefer to validate only non-falsey values if present at this time.
+            return new Error(
+                `invalid 'elem_list' of value '${this.elem_list}'`
+            );
+        }
+
+        // // Validate `info_list`
+        if (!this.info_list?.length) return new Error("`info_list` cannot be empty");
+        return undefined;
     }
 }
 export const _root_component_type_list_1_spec_for_Alert: __utils.ComponentSpec[] = [
