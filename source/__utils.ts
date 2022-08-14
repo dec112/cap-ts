@@ -66,6 +66,11 @@ export const ccitt: number = 0;
 export const iso: number = 1;
 export const joint_iso_itu_t: number = 2;
 export const joint_iso_ccitt: number = 2;
+/** 
+ * A RegExp to test that a string is an ISO 8601 datetime.
+ * @link https://stackoverflow.com/questions/12756159/regex-and-iso8601-formatted-datetime 
+ * */
+export const ISO_8601_FULL = new RegExp(/^\d{4}-\d\d-\d\dT\d\d:\d\d:\d\d(\.\d+)?(([+-]\d\d:\d\d)|Z)?$/i);
 
 // COMMON
 
@@ -1488,4 +1493,25 @@ export const _decodeBigInt: ASN1Decoder<OCTET_STRING> = (
     el: ASN1Element
 ): OCTET_STRING => {
     return el.octetString;
+};
+
+/**
+ * `validateDatetime` validates a given datetime string against ISO8601 format and as a valid JS Date.
+ * It returns an `Error` if invalid, otherwise `undefined`.
+ */
+ export const validateDatetime = (
+  attr: string,
+  datetimeStr: string
+): Error | undefined => {
+  if (!ISO_8601_FULL.test(datetimeStr))
+      return new Error(
+          `invalid datetime '${attr}' of value '${datetimeStr}': does not match ISO8601 format`
+      );
+  const date = new Date(datetimeStr);
+  if (!date || date.toString() === "Invalid Date")
+      return new Error(
+          `invalid datetime '${attr}' of value '${datetimeStr}': not a parseable date`
+      );
+
+  return undefined;
 };
