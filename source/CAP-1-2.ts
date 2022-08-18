@@ -599,6 +599,16 @@ export function _encode_Value(
 
 export class Alert_info_list_info_eventCode_list_eventCode {
     constructor(readonly valueName: ValueName, readonly value: Value) {}
+
+    /** `validate` returns an `Error` if the `valueName` attribute is invalid, otherwise it returns `undefined` */
+    validate(): Error | undefined {
+        if (!this.valueName)
+            return new Error(
+                `invalid 'eventCode.valueName' of value '${this.valueName}'`
+            );
+
+        return undefined;
+    }
 }
 export const _root_component_type_list_1_spec_for_Alert_info_list_info_eventCode_list_eventCode: __utils.ComponentSpec[] = [
     new __utils.ComponentSpec(
@@ -695,6 +705,16 @@ export function _encode_Alert_info_list_info_eventCode_list_eventCode(
 
 export class Alert_info_list_info_parameter_list_parameter {
     constructor(readonly valueName: ValueName, readonly value: Value) {}
+
+    /** `validate` returns an `Error` if the `valueName` attribute is invalid, otherwise it returns `undefined` */
+    validate(): Error | undefined {
+        if (!this.valueName)
+            return new Error(
+                `invalid 'parameter.valueName' of value '${this.valueName}'`
+            );
+
+        return undefined;
+    }
 }
 export const _root_component_type_list_1_spec_for_Alert_info_list_info_parameter_list_parameter: __utils.ComponentSpec[] = [
     new __utils.ComponentSpec(
@@ -798,6 +818,20 @@ export class Alert_info_list_info_resource_list_resource {
         readonly derefUri: asn1.OPTIONAL<XSD.String>,
         readonly digest: asn1.OPTIONAL<XSD.String>
     ) {}
+
+    /** `validate` returns an `Error` if any required attributes are invalid, otherwise it returns `undefined` */
+    validate(): Error | undefined {
+        if (!this.resourceDesc)
+            return new Error(
+                `invalid 'resource.resourceDesc' of value '${this.resourceDesc}'`
+            );
+        if (!this.mimeType)
+            return new Error(
+                `invalid 'resource.mimeType' of value '${this.mimeType}'`
+            );
+
+        return undefined;
+    }
 }
 export const _root_component_type_list_1_spec_for_Alert_info_list_info_resource_list_resource: __utils.ComponentSpec[] = [
     new __utils.ComponentSpec(
@@ -958,6 +992,16 @@ export function _encode_Alert_info_list_info_resource_list_resource(
 
 export class Alert_info_list_info_area_list_area_geocode_list_geocode {
     constructor(readonly valueName: ValueName, readonly value: Value) {}
+
+    /** `validate` returns an `Error` if the `valueName` attribute is invalid, otherwise it returns `undefined` */
+    validate(): Error | undefined {
+        if (!this.valueName)
+            return new Error(
+                `invalid 'geocode.valueName' of value '${this.valueName}'`
+            );
+
+        return undefined;
+    }
 }
 export const _root_component_type_list_1_spec_for_Alert_info_list_info_area_list_area_geocode_list_geocode: __utils.ComponentSpec[] = [
     new __utils.ComponentSpec(
@@ -1067,6 +1111,21 @@ export class Alert_info_list_info_area_list_area {
         readonly altitude: asn1.OPTIONAL<XSD.Decimal>,
         readonly ceiling: asn1.OPTIONAL<XSD.Decimal>
     ) {}
+
+    /** `validate` returns an `Error` if any required attributes are invalid, otherwise it returns `undefined` */
+    validate(): Error | undefined {
+        if (!this.areaDesc)
+            return new Error(
+                `invalid 'area.areaDesc' of value '${this.areaDesc}'`
+            );
+
+        for (const geocode of this.geocode_list ?? []) {
+            const geocodeErr = geocode.validate();
+            if (geocodeErr !== undefined) return geocodeErr;
+        }
+
+        return undefined;
+    }
 }
 export const _root_component_type_list_1_spec_for_Alert_info_list_info_area_list_area: __utils.ComponentSpec[] = [
     new __utils.ComponentSpec(
@@ -1261,6 +1320,75 @@ export class Alert_info_list_info {
         readonly resource_list: Alert_info_list_info_resource_list_resource[],
         readonly area_list: Alert_info_list_info_area_list_area[]
     ) {}
+
+    /** `validate` returns an `Error` if any attributes are invalid, otherwise it returns `undefined` */
+    validate(): Error | undefined {
+        if (!this.category_list?.length)
+            return new Error("'category_list' cannot be empty");
+        for (const category of this.category_list) {
+            if (
+                _to_string_Alert_info_list_info_category_list_category(
+                    category
+                ) === undefined
+            )
+                return new Error(`invalid 'category' of value '${category}'`);
+        }
+
+        if (!this.event)
+            return new Error(`invalid 'event' of value '${this.event}'`);
+
+        if (!this.responseType_list?.length)
+            return new Error("'responseType_list' cannot be empty");
+        for (const responseType of this.responseType_list) {
+            if (
+                _to_string_Alert_info_list_info_responseType_list_responseType(
+                    responseType
+                ) === undefined
+            )
+                return new Error(
+                    `invalid 'responseType' of value '${responseType}'`
+                );
+        }
+
+        if (_to_string_Alert_info_list_info_urgency(this.urgency) === undefined)
+            return new Error(`invalid 'urgency' of value '${this.urgency}'`);
+
+        if (
+            _to_string_Alert_info_list_info_severity(this.severity) ===
+            undefined
+        )
+            return new Error(`invalid 'severity' of value '${this.severity}'`);
+
+        if (
+            _to_string_Alert_info_list_info_certainty(this.certainty) ===
+            undefined
+        )
+            return new Error(
+                `invalid 'certainty' of value '${this.certainty}'`
+            );
+
+        for (const eventCode of this.eventCode_list ?? []) {
+            const eventCodeErr = eventCode.validate();
+            if (eventCodeErr !== undefined) return eventCodeErr;
+        }
+
+        for (const parameter of this.parameter_list ?? []) {
+            const parameterErr = parameter.validate();
+            if (parameterErr !== undefined) return parameterErr;
+        }
+
+        for (const resource of this.resource_list ?? []) {
+            const resourceErr = resource.validate();
+            if (resourceErr !== undefined) return resourceErr;
+        }
+
+        for (const area of this.area_list ?? []) {
+            const areaErr = area.validate();
+            if (areaErr !== undefined) return areaErr;
+        }
+
+        return undefined;
+    }
 }
 export const _root_component_type_list_1_spec_for_Alert_info_list_info: __utils.ComponentSpec[] = [
     new __utils.ComponentSpec(
@@ -1717,11 +1845,11 @@ export class Alert {
         readonly elem_list: XSD.String[]
     ) {}
 
-    public toXML (): string {
+    public toXML(): string {
         return alertToXML(this);
     }
 
-    public static async fromXML (str: string): Promise<Alert> {
+    public static async fromXML(str: string): Promise<Alert> {
         return alertFromXML(str);
     }
 
@@ -1737,13 +1865,13 @@ export class Alert {
         const invalidSent = __utils.validateDatetime("sent", this.sent);
         if (invalidSent) return invalidSent;
 
-        if (_from_string_Alert_status(String(this.status)) === undefined)
+        if (_to_string_Alert_status(this.status) === undefined)
             return new Error(`invalid 'status' of value '${this.status}'`);
 
-        if (_from_string_Alert_msgType(String(this.msgType)) === undefined)
+        if (_to_string_Alert_msgType(this.msgType) === undefined)
             return new Error(`invalid 'msgType' of value '${this.msgType}'`);
 
-        if (_from_string_Alert_scope(String(this.scope)) === undefined)
+        if (_to_string_Alert_scope(this.scope) === undefined)
             return new Error(`invalid 'scope' of value '${this.scope}'`);
 
         if (
@@ -1756,8 +1884,6 @@ export class Alert {
             return new Error(`invalid 'code' of value '${this.code_list}'`);
         }
 
-        // TODO: Validate info_list
-
         if (this.elem_list?.length && this.elem_list?.some((elem) => !elem)) {
             // Note: No known instances of `elem_list` in references or examples.
             // Prefer to validate only non-falsey values if present at this time.
@@ -1766,8 +1892,14 @@ export class Alert {
             );
         }
 
-        // // Validate `info_list`
-        if (!this.info_list?.length) return new Error("`info_list` cannot be empty");
+        // Validate `info_list`
+        if (!this.info_list?.length)
+            return new Error("'info_list' cannot be empty");
+        for (const info of this.info_list) {
+            const infoErr = info.validate();
+            if (infoErr !== undefined) return infoErr;
+        }
+
         return undefined;
     }
 }
