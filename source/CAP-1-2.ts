@@ -110,7 +110,7 @@ export function _from_string_Alert_msgType (str: string): Alert_msgType | undefi
         [ "cancel", Alert_msgType.cancel ],
         [ "error", Alert_msgType.error ],
         [ "update", Alert_msgType.update ],
-    ])).get(str.toLowerCase());
+    ])).get(str?.toLowerCase());
 }
 export const Alert_msgType_ack: Alert_msgType =
     Alert_msgType.ack; /* LONG_NAMED_ENUMERATED_VALUE */
@@ -161,7 +161,7 @@ export function _from_string_Alert_scope (str: string): Alert_scope | undefined 
         [ "private", Alert_scope.private_ ],
         [ "public", Alert_scope.public_ ],
         [ "restricted", Alert_scope.restricted ],
-    ])).get(str.toLowerCase());
+    ])).get(str?.toLowerCase());
 }
 export const Alert_scope_private_: Alert_scope =
     Alert_scope.private_; /* LONG_NAMED_ENUMERATED_VALUE */
@@ -235,7 +235,7 @@ export function _from_string_Alert_info_list_info_category_list_category (str: s
         [ "safety", Alert_info_list_info_category_list_category.safety ],
         [ "security", Alert_info_list_info_category_list_category.security ],
         [ "transport", Alert_info_list_info_category_list_category.transport ],
-    ])).get(str.toLowerCase());
+    ])).get(str?.toLowerCase());
 }
 export const Alert_info_list_info_category_list_category_cBRNE: Alert_info_list_info_category_list_category =
     Alert_info_list_info_category_list_category.cBRNE; /* LONG_NAMED_ENUMERATED_VALUE */
@@ -325,7 +325,7 @@ export function _from_string_Alert_info_list_info_responseType_list_responseType
         [ "none", Alert_info_list_info_responseType_list_responseType.none ],
         [ "prepare", Alert_info_list_info_responseType_list_responseType.prepare ],
         [ "shelter", Alert_info_list_info_responseType_list_responseType.shelter ],
-    ])).get(str.toLowerCase());
+    ])).get(str?.toLowerCase());
 }
 export const Alert_info_list_info_responseType_list_responseType_allClear: Alert_info_list_info_responseType_list_responseType =
     Alert_info_list_info_responseType_list_responseType.allClear; /* LONG_NAMED_ENUMERATED_VALUE */
@@ -405,7 +405,7 @@ export function _from_string_Alert_info_list_info_urgency (str: string): Alert_i
         [ "immediate", Alert_info_list_info_urgency.immediate ],
         [ "past", Alert_info_list_info_urgency.past ],
         [ "unknown", Alert_info_list_info_urgency.unknown ],
-    ])).get(str.toLowerCase());
+    ])).get(str?.toLowerCase());
 }
 export const Alert_info_list_info_urgency_expected: Alert_info_list_info_urgency =
     Alert_info_list_info_urgency.expected; /* LONG_NAMED_ENUMERATED_VALUE */
@@ -464,7 +464,7 @@ export function _from_string_Alert_info_list_info_severity (str: string): Alert_
         [ "moderate", Alert_info_list_info_severity.moderate ],
         [ "severe", Alert_info_list_info_severity.severe ],
         [ "unknown", Alert_info_list_info_severity.unknown ],
-    ])).get(str.toLowerCase());
+    ])).get(str?.toLowerCase());
 }
 export const Alert_info_list_info_severity_extreme: Alert_info_list_info_severity =
     Alert_info_list_info_severity.extreme; /* LONG_NAMED_ENUMERATED_VALUE */
@@ -523,7 +523,7 @@ export function _from_string_Alert_info_list_info_certainty (str: string): Alert
         [ "possible", Alert_info_list_info_certainty.possible ],
         [ "unknown", Alert_info_list_info_certainty.unknown ],
         [ "unlikely", Alert_info_list_info_certainty.unlikely ],
-    ])).get(str.toLowerCase());
+    ])).get(str?.toLowerCase());
 }
 export const Alert_info_list_info_certainty_likely: Alert_info_list_info_certainty =
     Alert_info_list_info_certainty.likely; /* LONG_NAMED_ENUMERATED_VALUE */
