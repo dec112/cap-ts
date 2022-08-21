@@ -453,10 +453,10 @@ describe("Alert", () => {
                 const err = testValidateHelper({
                     code_list: [],
                 });
-                expect(err?.message).toBe("invalid 'code' of value ''");
+                expect(err?.message).toBe("'code_list' cannot be empty");
             });
 
-            it("should catch a value of 'undefined'", () => {
+            it("should catch a value of undefined", () => {
                 const err = testValidateHelper({
                     code_list: [undefined],
                 });

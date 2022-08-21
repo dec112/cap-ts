@@ -1874,14 +1874,15 @@ export class Alert {
         if (_to_string_Alert_scope(this.scope) === undefined)
             return new Error(`invalid 'scope' of value '${this.scope}'`);
 
-        if (
-            !this.code_list?.length ||
-            !this.code_list?.every((code) => !!code)
-        ) {
-            // Note: CAP-TSU-1.2 mentions a required prefix of 'profile:CAP-TSU:'
-            // but some existing documents include other values (e.g. 'IPAWSv1.0').
+        if (!this.code_list?.length)
+            return new Error("'code_list' cannot be empty");
+        for (const code of this.code_list) {
+            // Note: CAP-TSU-1.2 mentions that <code> is a a required string with
+            // a prefix of 'profile:CAP-TSU:' + the CAP-TSU version number.
+            // However, some existing documents include other values (e.g. 'IPAWSv1.0').
             // Prefer to validate only on presence at this time.
-            return new Error(`invalid 'code' of value '${this.code_list}'`);
+            if (!code)
+                return new Error(`invalid 'code' of value '${this.code_list}'`);
         }
 
         if (this.elem_list?.length && this.elem_list?.some((elem) => !elem)) {
@@ -1892,7 +1893,6 @@ export class Alert {
             );
         }
 
-        // Validate `info_list`
         if (!this.info_list?.length)
             return new Error("'info_list' cannot be empty");
         for (const info of this.info_list) {
