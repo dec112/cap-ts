@@ -1,11 +1,15 @@
 # Common Alerting Protocol (CAP) in TypeScript
 
-* Author: [Jonathan M. Wilbur](https://github.com/JonathanWilbur) <[jonathan@wilbur.space](mailto:jonathan@wilbur.space)>
-* Copyright Year: 2020
-* License: [MIT License](https://mit-license.org/)
+This library should allow parsing and writing of CAP (Common Alerting Protocol) messages.
 
-## To Do
+## Thank You!
 
-- [x] Include encoding header
-- [ ] Test XML encoding and decoding more
-- [x] Ensure proper capitalization is used.
+A big thank you to [JonathanWilbur](https://github.com/JonathanWilbur) who initiated this project and to [Philgresh](https://github.com/philgresh) who added valuable tests to this project.
+
+<img align="right" src="https://raw.githubusercontent.com/dec112/cap-ts/master/assets/netidee.jpeg" height="150">This project has received funding from [Netidee Call 17](https://netidee.at).
+
+<br clear="both" />
+
+## License
+
+[MIT License](https://mit-license.org/)
