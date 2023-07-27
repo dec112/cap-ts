@@ -36,7 +36,7 @@ function alertInfoFromXML (doc: any): Alert_info_list_info {
             ?? (() => { throw new Error(`Invalid alert info severity '${doc.severity[0]}'.`); })(),
         _from_string_Alert_info_list_info_certainty(doc.certainty[0])
             ?? (() => { throw new Error(`Invalid alert info certainty '${doc.certainty[0]}'.`); })(),
-        doc.audience[0],
+        doc.audience ? doc.audience[0] : undefined,
         ((doc.eventCode ?? []) as Array<any>).map((ec): Alert_info_list_info_eventCode_list_eventCode => {
             return new Alert_info_list_info_eventCode_list_eventCode(
                 ec.valueName[0],
@@ -100,16 +100,16 @@ async function alertFromXML (str: string): Promise<Alert> {
             ?? (() => { throw new Error(`Invalid alert status '${alertDoc.status[0]}'.`); })(),
         _from_string_Alert_msgType(alertDoc.msgType[0])
             ?? (() => { throw new Error(`Invalid alert msgType '${alertDoc.msgType[0]}'.`); })(),
-        alertDoc.source[0],
+        alertDoc.source ? alertDoc.source[0] : undefined,
         _from_string_Alert_scope(alertDoc.scope[0])
             ?? (() => { throw new Error(`Invalid alert scope '${alertDoc.scope[0]}'.`); })(),
-        alertDoc.restriction[0],
+        alertDoc.restriction ? alertDoc.restriction[0] : undefined,
         alertDoc.addresses ? alertDoc.addresses[0] : undefined,
         alertDoc.code ? alertDoc.code[0] : undefined,
-        alertDoc.note[0],
-        alertDoc.references[0],
-        alertDoc.incidents[0],
-        (alertDoc.info as Array<any>).map(alertInfoFromXML),
+        alertDoc.note ? alertDoc.note[0] : undefined,
+        alertDoc.references ? alertDoc.references[0] : undefined,
+        alertDoc.incidents ? alertDoc.incidents[0] : undefined,
+        ((alertDoc.info ?? []) as Array<any>).map(alertInfoFromXML),
         alertDoc.elem ?? [],
     );
 }
