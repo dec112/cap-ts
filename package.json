@@ -1,12 +1,17 @@
 {
     "bugs": {
-        "email": "jonathan@wilbur.space"
+        "email": "gabriel.unterholzer@dec112.at"
     },
     "contributors": [
         {
             "email": "jonathan@wilbur.space",
             "name": "Jonathan M. Wilbur",
             "url": "https://github.com/JonathanWilbur"
+        },
+        {
+            "email": "gabriel.unterholzer@dec112.at",
+            "name": "Gabriel Unterholzer",
+            "url": "https://www.dec112.at"
         }
     ],
     "description": "Common Alerting Protocol (CAP) (ITU X.1303) Library in TypeScript",
