@@ -1,4 +1,27 @@
 {
+    "name": "@dec112/cap-ts",
+    "description": "Common Alerting Protocol (CAP) (ITU X.1303) Library in TypeScript",
+    "version": "0.2.0",
+    "license": "MIT",
+    "main": "./dist/node/index.js",
+    "types": "./dist/node/index.d.ts",
+    "exports": {
+        ".": "./dist/node/index.js",
+        "./builder": "./dist/node/builder.js"
+    },
+    "scripts": {
+        "benchmark": "node ./test/benchmark.js",
+        "breaking-update": "npx ncu -u && npm install",
+        "build": "npx tsc && npx webpack",
+        "build-node": "npx tsc",
+        "build-web": "npx webpack",
+        "clean": "rm -rf dist; mkdir -p dist",
+        "line-count": "npx sloc source",
+        "lint": "npx eslint --config .eslintrc.yml './source/**/*.ts' || true",
+        "prettify": "npx prettier './source/**/*.ts' --write",
+        "test": "npx jest --ci --reporters=default --reporters=jest-junit --coverage",
+        "test:watch": "npx jest --watch"
+    },
     "bugs": {
         "email": "gabriel.unterholzer@dec112.at"
     },
@@ -14,7 +37,11 @@
             "url": "https://www.dec112.at"
         }
     ],
-    "description": "Common Alerting Protocol (CAP) (ITU X.1303) Library in TypeScript",
+    "dependencies": {
+        "asn1-ts": "^3.3.1",
+        "xml2js": "^0.4.23",
+        "xmlbuilder2": "^2.1.6"
+    },
     "devDependencies": {
         "@babel/core": "^7.10.4",
         "@babel/preset-env": "^7.10.4",
@@ -50,32 +77,5 @@
         "Alerts",
         "X1303",
         "X.1303"
-    ],
-    "license": "MIT",
-    "main": "./dist/node/index.js",
-    "exports": {
-        ".": "./dist/node/index.js",
-        "./builder": "./dist/node/builder.js"
-    },
-    "name": "cap-ts",
-    "scripts": {
-        "benchmark": "node ./test/benchmark.js",
-        "breaking-update": "npx ncu -u && npm install",
-        "build": "npx tsc && npx webpack",
-        "build-node": "npx tsc",
-        "build-web": "npx webpack",
-        "clean": "rm -rf dist; mkdir -p dist",
-        "line-count": "npx sloc source",
-        "lint": "npx eslint --config .eslintrc.yml './source/**/*.ts' || true",
-        "prettify": "npx prettier './source/**/*.ts' --write",
-        "test": "npx jest --ci --reporters=default --reporters=jest-junit --coverage",
-        "test:watch": "npx jest --watch"
-    },
-    "types": "./dist/node/index.d.ts",
-    "version": "0.2.0",
-    "dependencies": {
-        "asn1-ts": "^3.3.1",
-        "xml2js": "^0.4.23",
-        "xmlbuilder2": "^2.1.6"
-    }
+    ]
 }
