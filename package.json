@@ -20,7 +20,8 @@
         "lint": "npx eslint --config .eslintrc.yml './source/**/*.ts' || true",
         "prettify": "npx prettier './source/**/*.ts' --write",
         "test": "npx jest --ci --reporters=default --reporters=jest-junit --coverage",
-        "test:watch": "npx jest --watch"
+        "test:watch": "npx jest --watch",
+        "prepublishOnly": "npm run build"
     },
     "bugs": {
         "email": "gabriel.unterholzer@dec112.at"
