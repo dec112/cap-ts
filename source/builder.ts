@@ -29,6 +29,14 @@ import {
   Alert_msgType as MsgType,
   Alert_scope as Scope,
   Alert_status as Status,
+  _from_string_Alert_info_list_info_category_list_category,
+  _from_string_Alert_info_list_info_certainty,
+  _from_string_Alert_info_list_info_responseType_list_responseType,
+  _from_string_Alert_info_list_info_severity,
+  _from_string_Alert_info_list_info_urgency,
+  _from_string_Alert_msgType,
+  _from_string_Alert_scope,
+  _from_string_Alert_status,
 } from "./CAP-1-2";
 
 export class ResourceBuilder {
@@ -174,6 +182,17 @@ export class AlertBuilder {
     this.info_list.map(x => x.build()),
     this.elem_list,
   )
+}
+
+export abstract class FromString {
+  static getCategory = (value: string) => _from_string_Alert_info_list_info_category_list_category(value);
+  static getCertainty = (value: string) => _from_string_Alert_info_list_info_certainty(value);
+  static getResponseType = (value: string) => _from_string_Alert_info_list_info_responseType_list_responseType(value);
+  static getSeverity = (value: string) => _from_string_Alert_info_list_info_severity(value);
+  static getUrgency = (value: string) => _from_string_Alert_info_list_info_urgency(value);
+  static getMsgType = (value: string) => _from_string_Alert_msgType(value);
+  static getScope = (value: string) => _from_string_Alert_scope(value);
+  static getStatus = (value: string) => _from_string_Alert_status(value);
 }
 
 export {
