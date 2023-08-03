@@ -4,10 +4,13 @@ This library should allow parsing and writing of CAP (Common Alerting Protocol) 
 
 ## Install
 
-This package is not published to a publicly available registry yet. \
-We'll update this document as soon as it is available.
+@dec112/cap-ts is publicly available on the npm registry.
 
-In the meantime you can just build the package your own.
+```sh
+npm install @dec112/cap-ts
+```
+
+## Build
 
 ```sh
 # install dependencies
@@ -32,7 +35,7 @@ import {
   Severity,
   Status,
   Urgency,
-} from 'cap-ts/builder';
+} from '@dec112/cap-ts/builder';
 
 const info = new InfoBuilder(
   // event
@@ -63,7 +66,7 @@ const xmlString = alert.build().toXML();
 ### Parsing a CAP alert
 
 ```typescript
-import { CAP_1_2 } from "cap-ts";
+import { CAP_1_2 } from "@dec112/cap-ts";
 
 try {
   const alert = await CAP_1_2.Alert.fromXML('<?xml version="1.0" ... >')
