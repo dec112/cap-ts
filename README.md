@@ -32,7 +32,7 @@ import {
   Severity,
   Status,
   Urgency,
-} from 'cap-ts/dist/node/builder';
+} from 'cap-ts/builder';
 
 const info = new InfoBuilder(
   // event

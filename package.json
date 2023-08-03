@@ -53,6 +53,10 @@
     ],
     "license": "MIT",
     "main": "./dist/node/index.js",
+    "exports": {
+        ".": "./dist/node/index.js",
+        "./builder": "./dist/node/builder.js"
+    },
     "name": "cap-ts",
     "scripts": {
         "benchmark": "node ./test/benchmark.js",
