@@ -12,7 +12,6 @@
     <language>en_US</language>
     <category>Fire</category>
     <event>the big event</event>
-    <responseType>Evacuate</responseType>
     <urgency>Immediate</urgency>
     <severity>Extreme</severity>
     <certainty>Observed</certainty>

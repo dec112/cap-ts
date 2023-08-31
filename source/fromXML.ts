@@ -26,7 +26,7 @@ function alertInfoFromXML (doc: any): Alert_info_list_info {
                 ?? (() => { throw new Error(`Invalid alert info category '${cat}'.`); })();
         }),
         doc.event[0],
-        (doc.responseType as Array<string>).map((rt) => {
+        ((doc.responseType ?? []) as Array<string>).map((rt) => {
             return _from_string_Alert_info_list_info_responseType_list_responseType(rt)
                 ?? (() => { throw new Error(`Invalid alert info responseType '${rt}'.`); })();
         }),
