@@ -1,7 +1,7 @@
 {
     "name": "@dec112/cap-ts",
     "description": "Common Alerting Protocol (CAP) (ITU X.1303) Library in TypeScript",
-    "version": "0.3.2",
+    "version": "0.3.3",
     "license": "MIT",
     "main": "./dist/node/index.js",
     "types": "./dist/node/index.d.ts",
