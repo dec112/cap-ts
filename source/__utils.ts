@@ -1352,7 +1352,7 @@ export function _parse_sequence(
     }
 }
 
-export function _encode_choice<T>(
+export function _encode_choice<T extends {}>(
     choices: Record<keyof T, ASN1Encoder<T[AllUnionMemberKeys<T>]>>,
     elGetter: ASN1Encoder<T>
 ): ASN1Encoder<T> {
@@ -1369,7 +1369,7 @@ export function _encode_choice<T>(
         }
         const encoder = choices[key];
         if (!encoder) {
-            throw new Error(`Unrecognized alternative '${key}'.`);
+            throw new Error(`Unrecognized alternative '${String(key)}'.`);
         }
         return encoder(value[key] as T[AllUnionMemberKeys<T>], elGetter as any);
     };
